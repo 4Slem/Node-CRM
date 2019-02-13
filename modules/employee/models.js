@@ -10,11 +10,13 @@ const schema = new Schema({
     type: String,
     required: true,
   },
-  avatar: {
-    url: String,
+  image: {
+    type: String,
+    default: '',
   },
   active: {
     status: Boolean,
+    default: false,
   },
   position: {
     ref: 'Positions',

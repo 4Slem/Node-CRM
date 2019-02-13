@@ -2,8 +2,14 @@ const Skills = require('./models');
 const errorHandler = require('../../utils/errorHandler');
 
 module.exports.getAll = async (req, res) => {
+  const query = {
+    user: req.user.id
+  };
+
+  if (req.query.type) { query.type = req.query.type; }
+
   try {
-    const skills = await Skills.find({ user: req.user.id });
+    const skills = await Skills.find(query);
     res.status(200).json(skills);
   } catch (error) {
     errorHandler(res, error);
