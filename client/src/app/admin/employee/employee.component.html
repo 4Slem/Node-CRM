@@ -1,0 +1,304 @@
+<div class="content container-fluid" style="padding: 30px;">
+    <div class="row">
+        <div class="col-xs-4">
+            <h4 class="page-title">Employee</h4>
+        </div>
+        <div class="col-xs-8 text-right m-b-20">
+            <a href="#" class="btn btn-primary rounded pull-right" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+        </div>
+    </div>
+    <div class="row filter-row">
+        <div class="col-sm-3 col-xs-6">
+            <div class="form-group form-focus">
+                <label class="control-label">Employee Name</label>
+                <input type="text" class="form-control floating" />
+            </div>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+            <div class="form-group form-focus">
+                <label class="control-label">Department Name</label>
+                <input type="text" class="form-control floating" />
+            </div>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+            <div class="form-group form-focus">
+                <label class="control-label">Position Name</label>
+                <input type="text" class="form-control floating" />
+            </div>
+        </div>
+        <div class="col-sm-3 col-xs-6">
+            <a href="#" class="btn btn-success btn-block"> Search </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-striped custom-table datatable" style="margin-bottom: 100px">
+                    <thead>
+                    <tr>
+                        <th style="width:30%;">Name</th>
+                        <th>Position</th>
+                        <th>Status</th>
+                        <th>Skills</th>
+                        <th class="text-right">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngIf="allEmployee$ | async as allEmployee">
+                    <tr *ngFor="let item of allEmployee">
+                        <td>
+                            <a href="./profile.html" class="avatar">
+                                <img *ngIf="item.image" [src]="'http://localhost:3000/'+item.image" alt="" style="width: 100%; display: block;">
+                            </a>
+                            <h2><a>{{ item.name }}{{ item.surname }} <span *ngIf="item.department">{{item.department.name}}</span></a></h2>
+                        </td>
+                        <td><span *ngIf="item.position">{{item.position.name}}</span><span *ngIf="!item.position">-</span></td>
+                        <td>
+                            <div class="dropdown action-label">
+                                <a class="btn btn-white btn-sm rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span *ngIf="item.active"><i class="fa fa-dot-circle-o text-success"></i> Active</span>
+                                    <span *ngIf="!item.active"><i class="fa fa-dot-circle-o text-danger"></i> Inactive</span>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown" *ngIf="item.skills.length > 0">
+                                <a class="btn btn-white btn-sm rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Show <i class="caret"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li *ngFor="let s of item.skills"><a href="#">{{s.name}}</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="dropdown">
+                                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                <ul class="dropdown-menu pull-right">
+                                    <!--<li><a (click)="setItem(item)" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>-->
+                                    <li><a (click)="setItem(item)" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="edit_employee" class="modal custom-modal fade" role="dialog" *ngIf="item">
+    <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Employee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="m-b-30">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Name <span class="text-danger">*</span></label>
+                                <input class="form-control" [value]="item.name" #namee type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">SurName <span class="text-danger">*</span></label>
+                                <input class="form-control" #surnamee [value]="item.surname" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Department <span class="text-danger">*</span></label>
+                                <div class="dropdown" style="width: 100%" *ngIf="department$ | async as department">
+                                    <a class="btn btn-white  rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="width: 100%">
+                                        {{item.department.name}}
+                                        <i class="caret"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" style="width: 100%">
+                                        <li *ngFor="let item of department" style="width: 100%" (click)="setDepartmente(item)">
+                                            <a>{{ item.name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Position <span class="text-danger">*</span></label>
+                                <div class="dropdown" style="width: 100%" *ngIf="positions$ | async as position">
+                                    <a class="btn btn-white  rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="width: 100%">
+                                        {{item.position.name}}
+                                        <i class="caret"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" style="width: 100%">
+                                        <li *ngFor="let item of position" style="width: 100%" (click)="setPose(item)">
+                                            <a>{{ item.name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Skills</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody *ngIf="skills$ | async as skills">
+                                    <tr *ngFor="let item2 of skills">
+                                        <td>{{ item2.name }}</td>
+                                        <td><input [value]="item2._id" [checked]="check(item2)" (change)="setSkillse($event, item2)" type="checkbox"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Active</td>
+                                        <td><input (click)="setActivee($event)" type="checkbox"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary btn-lg" data-dismiss="modal" (click)="editConfirm(item)">Create Employee</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="delete_employee" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content modal-md">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Employee</h4>
+            </div>
+            <form>
+                <div class="modal-body card-box">
+                    <p>Are you sure want to delete this?</p>
+                    <div class="m-t-20"> <a class="btn btn-default" data-dismiss="modal">Close</a>
+                        <button data-dismiss="modal"  class="btn btn-danger" (click)="delete(item)">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="add_employee" class="modal custom-modal fade" role="dialog">
+    <div class="modal-dialog">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Employee</h4>
+            </div>
+            <div class="modal-body">
+                <div class="m-b-30">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Name <span class="text-danger">*</span></label>
+                                <input class="form-control" #name type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">SurName <span class="text-danger">*</span></label>
+                                <input class="form-control" #surname type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Department <span class="text-danger">*</span></label>
+                                <div class="dropdown" style="width: 100%" *ngIf="department$ | async as department">
+                                    <a class="btn btn-white  rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="width: 100%">Select <i class="caret"></i></a>
+                                    <ul class="dropdown-menu" style="width: 100%">
+                                        <li *ngFor="let item of department" style="width: 100%" (click)="setDepartment(item)">
+                                            <a>{{ item.name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Position <span class="text-danger">*</span></label>
+                                <div class="dropdown" style="width: 100%" *ngIf="positions$ | async as position">
+                                    <a class="btn btn-white  rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="width: 100%">Select <i class="caret"></i></a>
+                                    <ul class="dropdown-menu" style="width: 100%">
+                                        <li *ngFor="let item of position" style="width: 100%" (click)="setPos(item)">
+                                            <a>{{ item.name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Skills</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="skills$ | async as skills">
+                                        <tr *ngFor="let item of skills">
+                                            <td>{{ item.name }}</td>
+                                            <td><input [value]="item._id" (change)="setSkills($event, item)" type="checkbox"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <table class="table table-striped custom-table">
+                                    <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Active</td>
+                                            <td><input (click)="setActive($event)" type="checkbox"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary btn-lg" data-dismiss="modal" (click)="createConfirm()">Create Employee</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

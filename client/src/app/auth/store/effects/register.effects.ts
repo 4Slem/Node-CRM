@@ -5,11 +5,12 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 
 import * as registerActions from '../actions/register.actions';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class RegisterEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 
   @Effect()
   register = this.actions$
@@ -17,7 +18,10 @@ export class RegisterEffects {
       ofType(registerActions.ActionTypes.REGISTER),
       mergeMap((data: registerActions.Register) => this.authService.register(data.payload)
         .pipe(
-          map(() => new registerActions.RegisterSuccess()),
+          map(() => {
+            this.router.navigate(['/auth/login']);
+            return new registerActions.RegisterSuccess()
+          }),
           catchError((err) => of(new registerActions.RegisterFail(err.error.message)))
         )
       )

@@ -7,8 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { CoreRoutingModule } from './core-routing.module';
 
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component'
 import { CoreComponent } from './core.component';
 
 import { HttpService } from './services/http.service';
@@ -19,8 +17,6 @@ import { reducers, CustorSerializer } from './store';
 @NgModule({
   declarations: [
     CoreComponent,
-    HeaderComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,

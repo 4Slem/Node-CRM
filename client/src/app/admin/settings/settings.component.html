@@ -1,0 +1,42 @@
+<div class="chat-main-row" style="margin-top: 60px">
+    <div class="chat-main-wrapper">
+        <div class="col-xs-12 message-view">
+            <div class="chat-window">
+                <div class="fixed-header">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h4 class="page-title m-b-0 m-t-5">Settings</h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="navbar">
+
+                                <div class="search-box m-t-0">
+                                    <div class="input-group input-group-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-contents">
+                    <div class="chat-content-wrap">
+                        <div class="chat-wrap-inner">
+                            <div class="contact-box clearfix">
+                                <div class="contact-cat col-xs-12 col-sm-4 col-lg-3">
+                                    <div class="roles-menu">
+                                        <ul class="nav">
+                                            <li routerLinkActive="active"><a routerLink="department">Department</a></li>
+                                            <li routerLinkActive="active"><a routerLink="position">Positions</a></li>
+                                            <li routerLinkActive="active"><a routerLink="skill">Skills</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <router-outlet></router-outlet>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

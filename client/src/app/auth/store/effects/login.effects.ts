@@ -5,11 +5,12 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 
 import * as loginActions from '../actions/login.actions';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
 export class LoginEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(private actions$: Actions, private authService: AuthService, private router: Router) {}
 
   @Effect()
   login$ = this.actions$
@@ -18,7 +19,10 @@ export class LoginEffects {
       mergeMap((data: loginActions.Login) => {
         return this.authService.login(data.payload)
           .pipe(
-            map(() => new loginActions.LoginSuccess()),
+            map(() => {
+              this.router.navigate(['/employee']);
+              return new loginActions.LoginSuccess()
+            }),
             catchError((err) => of(new loginActions.LoginFail(err.error.message)))
           )
         }

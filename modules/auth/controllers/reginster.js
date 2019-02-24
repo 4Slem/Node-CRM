@@ -3,6 +3,7 @@ const errorHandler = require('../../../utils/errorHandler');
 const User = require('../models');
 
 module.exports = async (req, res) => {
+  console.log(req.body)
   const canditate = await User.findOne({email: req.body.email});
 
   if (canditate) {

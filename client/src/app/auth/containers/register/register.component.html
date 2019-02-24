@@ -4,29 +4,25 @@
         <div class="account-logo">
             <a href="#"><img src="./assets/img/logo2.png" alt="Preadmin"></a>
         </div>
-        <form action="#">
-        <div class="form-group form-focus">
-            <label class="control-label">Username</label>
-            <input class="form-control floating" type="text" />
-        </div>
+        <div >
         <div class="form-group form-focus">
             <label class="control-label">Email</label>
-            <input class="form-control floating" type="text" />
+            <input class="form-control floating" #email type="text" />
         </div>
         <div class="form-group form-focus">
             <label class="control-label">Password</label>
-            <input class="form-control floating" type="password" />
+            <input class="form-control floating" #password type="password" />
         </div>
         <div class="form-group form-focus">
             <label class="control-label">Repeat Password</label>
-            <input class="form-control floating" type="password" />
+            <input class="form-control floating" #password2 type="password" />
         </div>
         <div class="form-group text-center">
-            <button class="btn btn-primary btn-block account-btn" type="submit">Register</button>
+            <button class="btn btn-primary btn-block account-btn" (click)="register()">Register</button>
         </div>
         <div class="text-center">
-            <a href="#">Already have an account?</a>
+            <a routerLink="/auth/login">Already have an account?</a>
         </div>
-        </form>
+        </div>
     </div>
 </div>

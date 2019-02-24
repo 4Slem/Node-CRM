@@ -47,7 +47,9 @@ module.exports.create = async (req, res) => {
       position: req.body.position,
       image: req.file ? req.file.path : '',
     }).save();
-    res.status(201).json(employee);
+
+    let user = await Employee.findOne({'_id': employee._id}).populate('skills').populate('position').populate('department');
+    res.status(201).json(user);
   } catch (error) {
     errorHandler(res, error);
   }

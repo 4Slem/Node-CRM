@@ -130,6 +130,7 @@ table.table td h2 span {color: #9e9e9e;display: block;font-size: 12px;margin-top
 .w-md {min-width: 110px;}
 .w-40 {width: 40px;}
 .block {display: block !important;}
+.contact-info .text-ellipsis {font-size: 18px;line-height: 40px;}
 .text-ellipsis {display: block;max-width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .text-muted-light {color:#aaa;}
 .card-box {background-color: #fff;border: 1px solid #e7e7e7;border-radius: 4px;margin-bottom: 30px;padding:20px;position: relative;}
@@ -155,7 +156,9 @@ table.table td h2 span {color: #9e9e9e;display: block;font-size: 12px;margin-top
 /*------------------------------------------------------------------
 [4. Bootstrap Classes]
 */
-
+.modal-body.card-box a {
+    margin-right: 10px;
+}
 .btn-white {background-color: #fff;border: 1px solid #ccc;color: #333;}
 .rounded, .circle {border-radius: 500px;}
 .bg-primary, .label-primary {background-color:#ffbc35;}
@@ -1471,7 +1474,10 @@ blockquote p {font-style: italic;font-weight: 400;}
 /*------------------------------------------------------------------
 [46. Contacts]
 */
-
+.contacts-list .btn {
+    width: 200px;
+    margin-bottom: 20px;
+}
 .contacts-header {background-color: #fff;border-bottom: 1px solid #eaeaea;padding: 10px 15px;}
 .contacts-header .navbar {border: 0 none;margin: 0;min-height: auto;}
 .contacts-header .user-info a {color: #76838f;text-transform: uppercase;}
@@ -1483,7 +1489,7 @@ blockquote p {font-style: italic;font-weight: 400;}
 .contact-type {height: 48px;position: absolute;width: 48px;}
 .contact-icon {background-color: #f3f7f9;border: 1px solid #e4eaec;border-radius: 4px;display: inline-block;height: 38px;line-height: 38px;text-align: center;width: 38px;}
 .contact-icon i {color: #76838f;font-size: 20px;}
-.contact-info {padding: 0 30px 0 50px;}
+.contact-info {padding: 0 30px 0 0px; height: 40px;}
 .contact-action {height: 30px;list-style: none;padding-left: 0;position: absolute;right: 0;text-align: right;top: 10px;width: 30px;}
 .contact-date {color: #888;font-size: 12px;}
 .contact-author a {color: #ffbc35;font-size: 12px;text-decoration: underline;}
