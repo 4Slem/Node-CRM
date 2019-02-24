@@ -1,0 +1,9 @@
+<button (click)="get()">create</button>
+<h1>position</h1>
+<div *ngIf="positions$ | async as position">
+    <ul>
+        <li *ngFor="let x of position">
+            {{x._id}} - {{x.name}} <span (click)="delete(x._id)">delete </span> <span (click)="edit(x)"> edit</span>
+        </li>
+    </ul>
+</div>

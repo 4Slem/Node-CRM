@@ -15,7 +15,7 @@ module.exports.getAll = async (req, res) => {
     const employee = await Employee
       .find(query)
       .skip(+req.query.offset * +req.query.limit)
-      .limit(+req.query.limit);
+      .limit(+req.query.limit).populate('skills').populate('position').populate('department').exec();
 
     res.status(200).json(employee);
   } catch (error) {

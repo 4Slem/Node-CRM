@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
 const authRoutes = require('./modules/auth/routes');
 const employeeRoutes = require('./modules/employee/routes');
 const departmentRoutes = require('./modules/department/routes');
@@ -22,7 +23,8 @@ require('./middleware/passport')(passport);
 app.use(require('morgan')('dev'));
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
-app.use(require('cors')());
+app.use('/uploads', express.static('uploads'));
+app.use(cors());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/employee', passport.authenticate('jwt', { session: false }), employeeRoutes);

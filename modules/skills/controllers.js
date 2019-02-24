@@ -2,9 +2,7 @@ const Skills = require('./models');
 const errorHandler = require('../../utils/errorHandler');
 
 module.exports.getAll = async (req, res) => {
-  const query = {
-    user: req.user.id
-  };
+  const query = { user: req.user.id };
 
   if (req.query.type) { query.type = req.query.type; }
 
