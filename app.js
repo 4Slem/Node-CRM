@@ -28,6 +28,13 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.static('client/dist/client'));
 app.use(cors());
 
+
+app.use('/api/auth', authRoutes);
+app.use('/api/employee', passport.authenticate('jwt', { session: false }), employeeRoutes);
+app.use('/api/department', passport.authenticate('jwt', { session: false }), departmentRoutes);
+app.use('/api/skills', passport.authenticate('jwt', { session: false }), skillsRoutes);
+app.use('/api/position', passport.authenticate('jwt', { session: false }), positionRoutes);
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist/client', 'index.html'));
 });
@@ -35,11 +42,5 @@ app.get('/', (req, res) => {
 app.get('**', (req, res) => {
   res.redirect('/');
 });
-
-app.use('/api/auth', authRoutes);
-app.use('/api/employee', passport.authenticate('jwt', { session: false }), employeeRoutes);
-app.use('/api/department', passport.authenticate('jwt', { session: false }), departmentRoutes);
-app.use('/api/skills', passport.authenticate('jwt', { session: false }), skillsRoutes);
-app.use('/api/position', passport.authenticate('jwt', { session: false }), positionRoutes);
 
 module.exports = app;
