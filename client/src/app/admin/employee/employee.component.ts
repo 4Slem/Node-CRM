@@ -86,7 +86,18 @@ export class EmployeeComponent implements OnInit {
     let name = this.namee.nativeElement.value;
     let surname = this.surnamee.nativeElement.value;
     if (name && name.length > 1 && surname && surname.length > 1) {
-      this.store.dispatch(new editEmployee({data: {name, surname, department: this.departmente, position: this.positione, skills: Object.keys(this.skillse), active: this.activee}, id: data._id}));
+
+      let user = {name, surname, active: this.activee};
+      if (this.departmente) {
+        user['department'] = this.departmente;
+      } else {user['department'] = this.item.department;}
+      if (this.positione) {
+        user['position'] = this.positione;
+      }else {user['position'] = this.item.position;}
+      if (Object.keys(this.skills).length > 0) {
+        user['skills'] = Object.keys(this.skills);
+      }else {user['skills'] = this.item.skills;}
+      this.store.dispatch(new editEmployee({data: user, id: data._id}));
     }
   }
 

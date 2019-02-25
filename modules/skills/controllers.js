@@ -2,7 +2,7 @@ const Skills = require('./models');
 const errorHandler = require('../../utils/errorHandler');
 
 module.exports.getAll = async (req, res) => {
-  const query = { user: req.user.id };
+  const query = {  };
 
   if (req.query.type) { query.type = req.query.type; }
 
@@ -18,7 +18,6 @@ module.exports.remove = async (req, res) => {
   try {
     await Skills.remove({
       _id: req.params.id,
-      user: req.user.id,
     });
     res.status(200).json({ message: 'Delete' });
   } catch (error) {
@@ -32,7 +31,7 @@ module.exports.create = async (req, res) => {
       name: req.body.name,
       rating: req.body.rating,
       type: req.body.type,
-      user: req.user.id
+      user: req.user.id,
     }).save();
     res.status(201).json(skills);
   } catch (error) {
