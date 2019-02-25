@@ -8,7 +8,7 @@ import {
   createEmployee, createEmployeeFail,
   createEmployeeSuccess, deleteEmployee, deleteEmployeeFail, deleteEmployeeSuccess, editEmployee, editEmployeeSuccess,
   getEmployeeFail,
-  getAllEmployeeSuccess
+  getAllEmployeeSuccess, getAllEmployee
 } from '../actions';
 import { EmployeeService } from '../../services/employee.service';
 
@@ -23,7 +23,7 @@ export class AllEmployeeEffect {
   @Effect()
   getAllEmployee$ = this.actions$.pipe(
     ofType(ActionTypes.GET_ALL_EMPLOYEE),
-    switchMap(() => this.skillsService.getAllEmployee().pipe(
+    switchMap((data: getAllEmployee) => this.skillsService.getAllEmployee(data.payload).pipe(
       map(res => new getAllEmployeeSuccess(res)),
       catchError(error => of(new getEmployeeFail(error)))
     ))

@@ -3,11 +3,13 @@ import {ActionTypes, LoginAction} from '../actions/login.actions';
 export interface LoginState {
   isLogetIn: boolean;
   error: string | null;
+  email: string;
 }
 
 export const initialState: LoginState = {
   isLogetIn: false,
   error: null,
+  email: null,
 };
 
 export const reducer = (state = initialState, action: LoginAction): LoginState => {
@@ -24,6 +26,7 @@ export const reducer = (state = initialState, action: LoginAction): LoginState =
         ...state,
         isLogetIn: true,
         error: null,
+        email: action.payload.email
       };
     }
     case ActionTypes.LOGIN_FAIL: {

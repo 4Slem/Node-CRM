@@ -37,27 +37,41 @@ export class EmployeeComponent implements OnInit {
 
   @ViewChild('namee') namee: ElementRef;
   @ViewChild('surnamee') surnamee: ElementRef;
+  @ViewChild('namesearch') namesearch: ElementRef;
   skillse = {};
   departmente;
   positione;
   activee;
 
+
   constructor(private store: Store<any>) {}
 
   ngOnInit() {
-    this.store.dispatch(new getAllEmployee());
+    this.getEmployee();
+    this.allEmployee$ = this.store.pipe(select(selectAllEmployee));
+  }
+
+  select() {
     this.store.dispatch(new getSkills());
     this.store.dispatch(new getPositions());
     this.store.dispatch(new getDepartments());
 
-    this.allEmployee$ = this.store.pipe(select(selectAllEmployee));
     this.skills$ = this.store.pipe(select(selectSkills));
     this.positions$ = this.store.pipe(select(selectPositions));
     this.department$ = this.store.pipe(select(selectDepartments));
   }
 
+  getEmployee() {
+    const query = {};
+    if(this.namesearch.nativeElement.value.length > 1) {
+      query['name'] = this.namesearch.nativeElement.value
+    }
+    this.store.dispatch(new getAllEmployee(query));
+  }
+
   setItem(data) {
     this.item = data;
+    this.select();
   }
 
   createConfirm() {

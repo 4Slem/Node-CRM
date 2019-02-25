@@ -19,9 +19,9 @@ export class LoginEffects {
       mergeMap((data: loginActions.Login) => {
         return this.authService.login(data.payload)
           .pipe(
-            map(() => {
+            map((res) => {
               this.router.navigate(['/employee']);
-              return new loginActions.LoginSuccess()
+              return new loginActions.LoginSuccess(res);
             }),
             catchError((err) => of(new loginActions.LoginFail(err.error.message)))
           )
@@ -36,7 +36,10 @@ export class LoginEffects {
       mergeMap(() => {
         return this.authService.logout()
           .pipe(
-            map(() => new loginActions.LogOutSuccess()),
+            map(() => {
+              this.router.navigate(['/auth/login']);
+              return new loginActions.LogOutSuccess()
+            }),
             catchError(() => of(new loginActions.LogOutFail()))
           )
         }

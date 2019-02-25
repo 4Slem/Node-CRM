@@ -25,6 +25,8 @@ export enum ActionTypes {
 
 export class getAllEmployee implements Action {
   readonly type = ActionTypes.GET_ALL_EMPLOYEE;
+
+  constructor(public payload: any) {}
 }
 
 export class getAllEmployeeSuccess implements Action {

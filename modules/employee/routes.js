@@ -10,6 +10,6 @@ router.delete('/:id', remove);
 
 router.post('/', upload.single('image'), create);
 
-router.patch('/:id', upload.single('image'), update);
+router.patch('/:id', update);
 
 module.exports = router;

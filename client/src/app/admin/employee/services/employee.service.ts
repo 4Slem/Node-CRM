@@ -10,8 +10,10 @@ import { Employee } from '../models/employee';
 export class EmployeeService {
   constructor(private http: HttpClient) {}
 
-  getAllEmployee(): Observable<Employee[]>{
-    return this.http.get<Employee[]>('http://localhost:3000/api/employee');
+  getAllEmployee(data): Observable<Employee[]>{
+    return this.http.get<Employee[]>('http://localhost:3000/api/employee', {
+      params: data
+    });
   }
 
   deleteEmployee(data): Observable<Employee> {

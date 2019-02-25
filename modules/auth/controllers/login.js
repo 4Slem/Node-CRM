@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
 
       res.status(200).json({
         token: `Bearer ${token}`,
+        email: candidate.email,
       });
     } else {
       res.status(401).json({

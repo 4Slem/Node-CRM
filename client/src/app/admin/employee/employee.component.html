@@ -4,30 +4,24 @@
             <h4 class="page-title">Employee</h4>
         </div>
         <div class="col-xs-8 text-right m-b-20">
-            <a href="#" class="btn btn-primary rounded pull-right" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+            <a href="#" class="btn btn-primary rounded pull-right" data-toggle="modal" data-target="#add_employee" (click)="select()"><i class="fa fa-plus"></i> Add Employee</a>
         </div>
     </div>
     <div class="row filter-row">
         <div class="col-sm-3 col-xs-6">
             <div class="form-group form-focus">
                 <label class="control-label">Employee Name</label>
-                <input type="text" class="form-control floating" />
+                <input type="text"  #namesearch class="form-control floating" />
             </div>
         </div>
         <div class="col-sm-3 col-xs-6">
-            <div class="form-group form-focus">
-                <label class="control-label">Department Name</label>
-                <input type="text" class="form-control floating" />
-            </div>
+
         </div>
         <div class="col-sm-3 col-xs-6">
-            <div class="form-group form-focus">
-                <label class="control-label">Position Name</label>
-                <input type="text" class="form-control floating" />
-            </div>
+
         </div>
         <div class="col-sm-3 col-xs-6">
-            <a href="#" class="btn btn-success btn-block"> Search </a>
+            <a (click)="getEmployee()" class="btn btn-success btn-block"> Search </a>
         </div>
     </div>
     <div class="row">
@@ -49,7 +43,7 @@
                             <a href="./profile.html" class="avatar">
                                 <img *ngIf="item.image" [src]="'http://localhost:3000/'+item.image" alt="" style="width: 100%; display: block;">
                             </a>
-                            <h2><a>{{ item.name }}{{ item.surname }} <span *ngIf="item.department">{{item.department.name}}</span></a></h2>
+                            <h2><a>{{ item.name }} {{ item.surname }} <span *ngIf="item.department">{{item.department.name}}</span></a></h2>
                         </td>
                         <td><span *ngIf="item.position">{{item.position.name}}</span><span *ngIf="!item.position">-</span></td>
                         <td>
@@ -62,9 +56,9 @@
                         </td>
                         <td>
                             <div class="dropdown" *ngIf="item.skills.length > 0">
-                                <a class="btn btn-white btn-sm rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Show <i class="caret"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li *ngFor="let s of item.skills"><a href="#">{{s.name}}</a></li>
+                                <a style="min-width: 120px" class="btn btn-white btn-sm rounded dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Show <i class="caret"></i></a>
+                                <ul class="dropdown-menu" style="min-width: 120px">
+                                    <li style="min-width: 120px" *ngFor="let s of item.skills"><a href="#">{{s.name}}</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -72,7 +66,7 @@
                             <div class="dropdown">
                                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                 <ul class="dropdown-menu pull-right">
-                                    <!--<li><a (click)="setItem(item)" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>-->
+                                    <li><a (click)="setItem(item)" data-toggle="modal" data-target="#edit_employee"><i class="fa fa-pencil m-r-5"></i> Edit</a></li>
                                     <li><a (click)="setItem(item)" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a></li>
                                 </ul>
                             </div>

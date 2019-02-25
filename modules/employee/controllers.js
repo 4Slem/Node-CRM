@@ -3,13 +3,12 @@ const errorHandler = require('../../utils/errorHandler');
 
 module.exports.getAll = async (req, res) => {
   const query = {
-    user: req.user.id,
+    user: req.user.id
   };
 
   if (req.query.department) { query.department = req.query.department; }
-  if (req.query.skills) { query.skills = req.query.skills; }
   if (req.query.position) { query.position = req.query.position; }
-  if (req.query.active) { query.active = req.query.active; }
+  if (req.query.name) { query.name = req.query.name; }
 
   try {
     const employee = await Employee
@@ -59,16 +58,14 @@ module.exports.update = async (req, res) => {
   const updated = {
     name: req.body.name,
     surname: req.body.surname,
-    user: req.user.id,
     department: req.body.department,
     skills: req.body.skills,
-    active: req.body.active,
     position: req.body.position,
   };
 
-  if (file) {
-    updated.image = req.file.path;
-  }
+  // if (file) {
+  //   updated.image = req.file.path;
+  // }
 
   try {
     const employee = await Employee.findOneAndUpdate(
@@ -76,7 +73,8 @@ module.exports.update = async (req, res) => {
       { $set: updated },
       { new: true }
     );
-    res.status(200).json(employee);
+    let user = await Employee.findOne({'_id': employee._id}).populate('skills').populate('position').populate('department');
+    res.status(200).json(user);
   } catch (error) {
     errorHandler(res, error);
   }
