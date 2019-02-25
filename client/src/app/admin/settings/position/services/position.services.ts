@@ -19,7 +19,7 @@ export class PositionServices {
   }
 
   createPosition(data): Observable<Position> {
-    return this.http.post<Position>(`http://localhost:3000/api/position`, data);
+    return this.http.post<Position>(`https://crm-mean.herokuapp.com/api/position`, data);
   }
 
   editPosition({data, id}): Observable<Position> {

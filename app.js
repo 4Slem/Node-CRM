@@ -8,6 +8,7 @@ const departmentRoutes = require('./modules/department/routes');
 const skillsRoutes = require('./modules/skills/routes');
 const positionRoutes = require('./modules/position/routes');
 const mongoose = require('mongoose');
+const path = require('path');
 const keys = require('./config');
 const app = express();
 
@@ -24,7 +25,16 @@ app.use(require('morgan')('dev'));
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(bodyparser.json());
 app.use('/uploads', express.static('uploads'));
+app.use(express.static('client/dist/client'));
 app.use(cors());
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist/client', 'index.html'));
+});
+
+app.get('**', (req, res) => {
+  res.redirect('/');
+});
 
 app.use('/api/auth', authRoutes);
 app.use('/api/employee', passport.authenticate('jwt', { session: false }), employeeRoutes);

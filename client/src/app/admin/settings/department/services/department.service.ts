@@ -11,18 +11,18 @@ export class DepartmentsServices {
   constructor(private http: HttpClient) {}
 
   getDepartments(): Observable<Department[]>{
-    return this.http.get<Department[]>('http://localhost:3000/api/department');
+    return this.http.get<Department[]>('https://crm-mean.herokuapp.com/api/department');
   }
 
   deleteDepartment(data): Observable<Department> {
-    return this.http.delete<Department>(`http://localhost:3000/api/department/${data}`);
+    return this.http.delete<Department>(`https://crm-mean.herokuapp.com/api/department/${data}`);
   }
 
   createDepartment(data): Observable<Department> {
-    return this.http.post<Department>(`http://localhost:3000/api/department`, data);
+    return this.http.post<Department>(`https://crm-mean.herokuapp.com/api/department`, data);
   }
 
   editDepartment({data, id}): Observable<Department> {
-    return this.http.patch<Department>(`http://localhost:3000/api/department/${id}`, data);
+    return this.http.patch<Department>(`https://crm-mean.herokuapp.com/api/department/${id}`, data);
   }
 }

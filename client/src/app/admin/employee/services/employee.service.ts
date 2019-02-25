@@ -11,20 +11,20 @@ export class EmployeeService {
   constructor(private http: HttpClient) {}
 
   getAllEmployee(data): Observable<Employee[]>{
-    return this.http.get<Employee[]>('http://localhost:3000/api/employee', {
+    return this.http.get<Employee[]>('https://crm-mean.herokuapp.com/api/employee', {
       params: data
     });
   }
 
   deleteEmployee(data): Observable<Employee> {
-    return this.http.delete<Employee>(`http://localhost:3000/api/employee/${data}`);
+    return this.http.delete<Employee>(`https://crm-mean.herokuapp.com/api/employee/${data}`);
   }
 
   createEmployee(data): Observable<Employee> {
-    return this.http.post<Employee>(`http://localhost:3000/api/employee`, data);
+    return this.http.post<Employee>(`https://crm-mean.herokuapp.com/api/employee`, data);
   }
 
   editEmployee({data, id}): Observable<Employee> {
-    return this.http.patch<Employee>(`http://localhost:3000/api/employee/${id}`, data);
+    return this.http.patch<Employee>(`https://crm-mean.herokuapp.com/api/employee/${id}`, data);
   }
 }
