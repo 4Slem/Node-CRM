@@ -11,18 +11,18 @@ export class SkillsServices {
   constructor(private http: HttpClient) {}
 
   getSkills(): Observable<Skill[]>{
-    return this.http.get<Skill[]>('https://crm-mean.herokuapp.com/api/skills');
+    return this.http.get<Skill[]>('https://angular-node-mean-crm.herokuapp.com/api/skills');
   }
 
   deleteSkill(data): Observable<Skill> {
-    return this.http.delete<Skill>(`https://crm-mean.herokuapp.com/api/skills/${data}`);
+    return this.http.delete<Skill>(`https://angular-node-mean-crm.herokuapp.com/api/skills/${data}`);
   }
 
   createSkill(data): Observable<Skill> {
-    return this.http.post<Skill>(`https://crm-mean.herokuapp.com/api/skills`, data);
+    return this.http.post<Skill>(`https://angular-node-mean-crm.herokuapp.com/api/skills`, data);
   }
 
   editSkill({data, id}): Observable<Skill> {
-    return this.http.patch<Skill>(`https://crm-mean.herokuapp.com/api/skills/${id}`, data);
+    return this.http.patch<Skill>(`https://angular-node-mean-crm.herokuapp.com/api/skills/${id}`, data);
   }
 }

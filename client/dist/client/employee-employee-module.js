@@ -287,19 +287,19 @@ var EmployeeService = /** @class */ (function () {
         this.http = http;
     }
     EmployeeService.prototype.getAllEmployee = function (data) {
-        return this.http.get('https://crm-mean.herokuapp.com/api/employee', {
+        return this.http.get('https://angular-node-mean-crm.herokuapp.com/api/employee', {
             params: data
         });
     };
     EmployeeService.prototype.deleteEmployee = function (data) {
-        return this.http.delete("https://crm-mean.herokuapp.com/api/employee/" + data);
+        return this.http.delete("https://angular-node-mean-crm.herokuapp.com/api/employee/" + data);
     };
     EmployeeService.prototype.createEmployee = function (data) {
-        return this.http.post("https://crm-mean.herokuapp.com/api/employee", data);
+        return this.http.post("https://angular-node-mean-crm.herokuapp.com/api/employee", data);
     };
     EmployeeService.prototype.editEmployee = function (_a) {
         var data = _a.data, id = _a.id;
-        return this.http.patch("https://crm-mean.herokuapp.com/api/employee/" + id, data);
+        return this.http.patch("https://angular-node-mean-crm.herokuapp.com/api/employee/" + id, data);
     };
     EmployeeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

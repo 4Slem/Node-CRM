@@ -195,17 +195,17 @@ var PositionServices = /** @class */ (function () {
         this.http = http;
     }
     PositionServices.prototype.getPositions = function () {
-        return this.http.get('http://localhost:3000/api/position');
+        return this.http.get('https://angular-node-mean-crm.herokuapp.com/api/position');
     };
     PositionServices.prototype.deletePosition = function (data) {
-        return this.http.delete("http://localhost:3000/api/position/" + data);
+        return this.http.delete("https://angular-node-mean-crm.herokuapp.com/api/position/" + data);
     };
     PositionServices.prototype.createPosition = function (data) {
-        return this.http.post("https://crm-mean.herokuapp.com/api/position", data);
+        return this.http.post("https://angular-node-mean-crm.herokuapp.com/api/position", data);
     };
     PositionServices.prototype.editPosition = function (_a) {
         var data = _a.data, id = _a.id;
-        return this.http.patch("http://localhost:3000/api/position/" + id, data);
+        return this.http.patch("https://angular-node-mean-crm.herokuapp.com/api/position/" + id, data);
     };
     PositionServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

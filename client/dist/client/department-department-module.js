@@ -193,17 +193,17 @@ var DepartmentsServices = /** @class */ (function () {
         this.http = http;
     }
     DepartmentsServices.prototype.getDepartments = function () {
-        return this.http.get('https://crm-mean.herokuapp.com/api/department');
+        return this.http.get('https://angular-node-mean-crm.herokuapp.com/api/department');
     };
     DepartmentsServices.prototype.deleteDepartment = function (data) {
-        return this.http.delete("https://crm-mean.herokuapp.com/api/department/" + data);
+        return this.http.delete("https://angular-node-mean-crm.herokuapp.com/api/department/" + data);
     };
     DepartmentsServices.prototype.createDepartment = function (data) {
-        return this.http.post("https://crm-mean.herokuapp.com/api/department", data);
+        return this.http.post("https://angular-node-mean-crm.herokuapp.com/api/department", data);
     };
     DepartmentsServices.prototype.editDepartment = function (_a) {
         var data = _a.data, id = _a.id;
-        return this.http.patch("https://crm-mean.herokuapp.com/api/department/" + id, data);
+        return this.http.patch("https://angular-node-mean-crm.herokuapp.com/api/department/" + id, data);
     };
     DepartmentsServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

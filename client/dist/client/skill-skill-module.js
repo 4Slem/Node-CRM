@@ -21,17 +21,17 @@ var SkillsServices = /** @class */ (function () {
         this.http = http;
     }
     SkillsServices.prototype.getSkills = function () {
-        return this.http.get('https://crm-mean.herokuapp.com/api/skills');
+        return this.http.get('https://angular-node-mean-crm.herokuapp.com/api/skills');
     };
     SkillsServices.prototype.deleteSkill = function (data) {
-        return this.http.delete("https://crm-mean.herokuapp.com/api/skills/" + data);
+        return this.http.delete("https://angular-node-mean-crm.herokuapp.com/api/skills/" + data);
     };
     SkillsServices.prototype.createSkill = function (data) {
-        return this.http.post("https://crm-mean.herokuapp.com/api/skills", data);
+        return this.http.post("https://angular-node-mean-crm.herokuapp.com/api/skills", data);
     };
     SkillsServices.prototype.editSkill = function (_a) {
         var data = _a.data, id = _a.id;
-        return this.http.patch("https://crm-mean.herokuapp.com/api/skills/" + id, data);
+        return this.http.patch("https://angular-node-mean-crm.herokuapp.com/api/skills/" + id, data);
     };
     SkillsServices = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

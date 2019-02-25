@@ -416,14 +416,14 @@ var AuthService = /** @class */ (function () {
         localStorage.setItem('token', token);
     };
     AuthService.prototype.login = function (user) {
-        return this.http.post('http://localhost:3000/api/auth/login', user)
+        return this.http.post('https://angular-node-mean-crm.herokuapp.com:3000/api/auth/login', user)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_a) {
             var token = _a.token;
             AuthService_1.setToken(token);
         }));
     };
     AuthService.prototype.register = function (user) {
-        return this.http.post('http://localhost:3000/api/auth/register', user);
+        return this.http.post('https://angular-node-mean-crm.herokuapp.com:3000/api/auth/register', user);
     };
     AuthService.prototype.logout = function () {
         localStorage.clear();

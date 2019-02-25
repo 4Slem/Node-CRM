@@ -11,18 +11,18 @@ export class PositionServices {
   constructor(private http: HttpClient) {}
 
   getPositions(): Observable<Position[]>{
-    return this.http.get<Position[]>('http://localhost:3000/api/position');
+    return this.http.get<Position[]>('https://angular-node-mean-crm.herokuapp.com/api/position');
   }
 
   deletePosition(data): Observable<Position> {
-    return this.http.delete<Position>(`http://localhost:3000/api/position/${data}`);
+    return this.http.delete<Position>(`https://angular-node-mean-crm.herokuapp.com/api/position/${data}`);
   }
 
   createPosition(data): Observable<Position> {
-    return this.http.post<Position>(`https://crm-mean.herokuapp.com/api/position`, data);
+    return this.http.post<Position>(`https://angular-node-mean-crm.herokuapp.com/api/position`, data);
   }
 
   editPosition({data, id}): Observable<Position> {
-    return this.http.patch<Position>(`http://localhost:3000/api/position/${id}`, data);
+    return this.http.patch<Position>(`https://angular-node-mean-crm.herokuapp.com/api/position/${id}`, data);
   }
 }
