@@ -25,14 +25,14 @@ export class AuthService {
   }
 
   login(user: User): Observable<{token: string}> {
-    return this.http.post<{token: string}>('https://angular-node-mean-crm.herokuapp.com:3000/api/auth/login', user)
+    return this.http.post<{token: string}>('https://angular-node-mean-crm.herokuapp.com/api/auth/login', user)
       .pipe(tap(({ token }) => {
         AuthService.setToken(token);
       }));
   }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>('https://angular-node-mean-crm.herokuapp.com:3000/api/auth/register', user);
+    return this.http.post<User>('https://angular-node-mean-crm.herokuapp.com/api/auth/register', user);
   }
 
   logout() {
